@@ -91,19 +91,49 @@ class BlackSchoels:
         call_rho = self.K * self.T * math.exp(-self.r * self.T) * norm.cdf(self.d2)
         put_rho = -self.K * self.T * math.exp(-self.r * self.T) * norm.cdf(-self.d2)
 
-        pass
+        
+        
+        return {
+            'gamma' : gamma,
+            'rho': {'call':call_rho, 'put': put_rho},
+            'vega': vega,
+            'theta': {'call': call_theta, 'put': put_theta},
+            'delta' : {'call' : call_delta, 'put' : put_delta}
+        }
+        
+        
+        
+        
     # this function should return the gamma,rho,vega,theta, and delta in a dictionary 
     #out of which the delta, vegha, and rho should take a dictionary that has a key of "call and puts" and a value.
-
+            
 #create a functino calculate the option price This takes the arguments from the OPtion call class we built 
 
-
+    def calculate_option_priceself(self,spot_price, maturing_date, Risk_free_rate,Volitility): 
+        
+        
+        
+        
     # this should be a  wrapper function 
-    
+            bs = BlackSchoels(
+                spot_price= spot_price,
+                maturing_date= maturing_date,
+                Risk_free_rate= Risk_free_rate,
+                Volitility= Volitility
+            )
     # has a tupple of the class w/ arguments 
-    
+
     # returns the "call", " puts", and greeks, as a dictionary as key value pairs of eachother.
-    
+            call_price = bs.calculate_call_price()
+            greek = bs.calculate_call_price()
+            put_price = bs.calculate_put_price()
+
+            return ({
+                    'greek': greek,
+                    'call_price': call_price,
+                    'put_price': put_price,
+                })
+        
     
 
 
